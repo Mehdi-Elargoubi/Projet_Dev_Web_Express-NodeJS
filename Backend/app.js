@@ -42,7 +42,8 @@ app.use((req, res, next) => {
     // next();
 
     // demande de rendu EJS
-    res.render('pages/home', { nickname: '', sex: '' }) ; // on donne le chemin dans views, et on omet le .ejs
+    const user = {nickname:'Mehdi', sex:'M'} ;
+    res.render('pages/home', { user }) ; // on donne le chemin dans views, et on omet le .ejs
 
 });
 
