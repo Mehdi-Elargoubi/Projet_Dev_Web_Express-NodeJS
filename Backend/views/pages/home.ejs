@@ -14,12 +14,23 @@
 
 <h2>Bonjour 
 
-    <%if (typeof user !== 'undefined') { %>
-        <%= user %> !
+    <%if (!nickname) { %>
+        <% if(!sex) { %>
+            <h1>Bonjour bel(le) inconnu(e)</h1>
+        <% } else if (sex === 'M') { %>
+            <h1>Bonjour bel inconnu</h1>
+        <% } else if (sex === 'F') { %>
+            <h1>Bonjour belle inconnue</h1>
+        <% } %>
     <% } else { %>
-        bel(le) inconnu(e) !
+        <% if (!sex) { %>
+            <h1>Bonjour <%= nickname %> !</h1>
+        <% } else if (sex === 'M') { %>
+            <h1>Bonjour Mr <%= nickname %> !</h1>
+        <% } else if (sex === 'F') { %>
+            <h1>Bonjour Mme <%= nickname %> !</h1>
+        <% } %>
     <% } %>
-
 </h2>
 
 </body>

@@ -42,7 +42,7 @@ app.use((req, res, next) => {
     // next();
 
     // demande de rendu EJS
-    res.render('pages/home', { nickname: 'Mehdi', sex: 'M' }) ; // on donne le chemin dans views, et on omet le .ejs
+    res.render('pages/home', { nickname: '', sex: '' }) ; // on donne le chemin dans views, et on omet le .ejs
 
 });
 
