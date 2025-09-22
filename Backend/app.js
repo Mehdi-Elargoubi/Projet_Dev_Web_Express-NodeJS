@@ -33,20 +33,19 @@ const path = require('path');
 
 app.use(express.static(path.join(__dirname,'public')));
 
-app.set('view engine', 'ejs'); // Définition du moteur de rendu 
 app.set('views', path.join(__dirname, 'views')); // Déclaration du dossier contenant les vues
+app.set('view engine', 'ejs'); // Définition du moteur de rendu 
 
-app.use((req, res, next) => {
-    const now = new Date().toDateString() ;
-    console.log(`${now} : une requête ${req.method} est arrivée !`);
-    // next();
+const expressLayouts = require('express-ejs-layouts'); // Importation du module express-ejs-layouts
+app.use(expressLayouts); // Ajout du module express-ejs-layouts comme middleware
+app.set('layout', '../views/layouts/layout'); // Définition du layout par défaut
 
+app.use((req, res) => {
     // demande de rendu EJS
     const user = {nickname:'Mehdi', sex:'M'} ;
     res.render('pages/home', { user }) ; // on donne le chemin dans views, et on omet le .ejs
 
 });
-
 
 // Exportation de notre application express
 module.exports = app;
