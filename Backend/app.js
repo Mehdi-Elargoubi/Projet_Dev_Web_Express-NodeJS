@@ -2,6 +2,7 @@ const express = require('express'); // inclusion d'express
 // Instanciation d'une application express
 const app = express();
 const path = require('path');
+const { title } = require('process');
 
 // Configuration de l'application : une première gestion "basique" des requêtes.
 // app.use((req, res) => {
@@ -31,14 +32,14 @@ const path = require('path');
 //     res.end('Le serveur Express dit <b>bonjour</b>');
 // });
 
-// app.use(express.static(path.join(__dirname,'public')));
+ app.use(express.static(path.join(__dirname,'public')));
 
-// app.set('views', path.join(__dirname, 'views')); // Déclaration du dossier contenant les vues
-// app.set('view engine', 'ejs'); // Définition du moteur de rendu 
+ app.set('views', path.join(__dirname, 'views')); // Déclaration du dossier contenant les vues
+ app.set('view engine', 'ejs'); // Définition du moteur de rendu 
 
-// const expressLayouts = require('express-ejs-layouts'); // Importation du module express-ejs-layouts
-// app.use(expressLayouts); // Ajout du module express-ejs-layouts comme middleware
-// app.set('layout', '../views/layouts/layout'); // Définition du layout par défaut
+ const expressLayouts = require('express-ejs-layouts'); // Importation du module express-ejs-layouts
+ app.use(expressLayouts); // Ajout du module express-ejs-layouts comme middleware
+ app.set('layout', '../views/layouts/layout'); // Définition du layout par défaut
 
 // app.use((req, res) => {
 //     // demande de rendu EJS
@@ -46,6 +47,10 @@ const path = require('path');
 //     res.render('pages/home', { user }) ; // on donne le chemin dans views, et on omet le .ejs
 
 // });
+
+
+
+
 
 
 // Middleware déclenché pour quelle que soit la requête
@@ -57,12 +62,14 @@ app.use((req, res, next) => {
 
 // Route déclenchée uniquement pour les requêtes GET vers l'URL racine "/"
 app.get('/', (req, res) => {
-    res.end('<h1>Bienvenue sur la HOME PAGE</h1>') ;
+    //res.end('<h1>Bienvenue sur la HOME PAGE</h1>') ;
+    res.render('pages/home', {title: 'Accueil'}) ;
 });
 
 // Route déclenchée uniquement pour les requêtes GET vers l'URL "/about"
 app.get('/about', (req, res) => {
-    res.end('<p>Ce cours est inspiré de la documentation Express.</p>') ;
+    //res.end('<p>Ce cours est inspiré de la documentation Express.</p>') ;
+    res.render('pages/about', {title: 'À propos'}) ;
 }) ;
 
 // Route déclenchée pour toutes requêtes GET non matchées par les précédentes
@@ -70,7 +77,7 @@ app.get('/about', (req, res) => {
 app.get('/*path', (req, res) => {
     // res.send('<p>... je ne sais pas quoi dire ...</p>') ;
     res.redirect('/') ;
-}) ;
+});
 
 
 

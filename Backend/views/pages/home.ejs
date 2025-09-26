@@ -1,22 +1,5 @@
-<h1>Ceci est ma première page EJS !!!</h1>
-
-<h2> 
-
-    <%if (!user.nickname) { %>
-        <% if(!user.sex) { %>
-            <h1>Bonjour bel(le) inconnu(e)</h1>
-        <% } else if (user.sex === 'M') { %>
-            <h1>Bonjour bel inconnu</h1>
-        <% } else if (user.sex === 'F') { %>
-            <h1>Bonjour belle inconnue</h1>
-        <% } %>
-    <% } else { %>
-        <% if (!user.sex) { %>
-            <h1>Bonjour <%= user.nickname %> !</h1>
-        <% } else if (user.sex === 'M') { %>
-            <h1>Bonjour Mr <%= user.nickname %> !</h1>
-        <% } else if (user.sex === 'F') { %>
-            <h1>Bonjour Mme <%= user.nickname %> !</h1>
-        <% } %>
-    <% } %>
-</h2>
+<section>
+  <p class="breadcrumb" style="margin-top: 0px; text-align: left;" >&gt; Accueil</p>
+  <h1>Bienvenue sur Démo Routage Express</h1>
+    <img src="/images/routing.png" alt="Image de démonstration" class="home-image" width="400">
+</section>

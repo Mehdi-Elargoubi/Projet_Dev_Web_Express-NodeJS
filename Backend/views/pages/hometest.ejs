@@ -1,0 +1,20 @@
+
+<h2> 
+    <%if (!user.nickname) { %>
+        <% if(!user.sex) { %>
+            <h1>Bonjour bel(le) inconnu(e)</h1>
+        <% } else if (user.sex === 'M') { %>
+            <h1>Bonjour bel inconnu</h1>
+        <% } else if (user.sex === 'F') { %>
+            <h1>Bonjour belle inconnue</h1>
+        <% } %>
+    <% } else { %>
+        <% if (!user.sex) { %>
+            <h1>Bonjour <%= user.nickname %> !</h1>
+        <% } else if (user.sex === 'M') { %>
+            <h1>Bonjour Mr <%= user.nickname %> !</h1>
+        <% } else if (user.sex === 'F') { %>
+            <h1>Bonjour Mme <%= user.nickname %> !</h1>
+        <% } %>
+    <% } %>
+</h2>
