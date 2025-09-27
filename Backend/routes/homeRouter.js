@@ -1,8 +1,13 @@
-const express = require('express');
-const router = express.Router();
+var express = require('express');
+var router = express.Router();
 
-router.get('/', (req, res) => {
-    res.render('pages/home', {title: 'Accueil'}) ;
-});
+const homeController = require('../controllers/homeContoller');
+const { home } = require('../controllers/aboutContoller');
+router.get('/', homeController.home);
+
+// Route without controller
+// router.get('/', (req, res) => {
+//     res.render('pages/home', {title: 'Accueil'}) ;
+// });
 
 module.exports = router;
