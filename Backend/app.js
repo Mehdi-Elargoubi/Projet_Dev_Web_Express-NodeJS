@@ -4,6 +4,10 @@ const app = express();
 const path = require('path');
 const { title } = require('process');
 
+const homeRouter = require('./routes/homeRouter');
+const aboutRouter = require('./routes/aboutRouter');
+
+
 // Configuration de l'application : une première gestion "basique" des requêtes.
 // app.use((req, res) => {
 //     // Une fois encore, les requêtes sont pour l'instant toutes traitées de la même manière.
@@ -61,23 +65,30 @@ app.use((req, res, next) => {
 });
 
 // Route déclenchée uniquement pour les requêtes GET vers l'URL racine "/"
-app.get('/', (req, res) => {
-    //res.end('<h1>Bienvenue sur la HOME PAGE</h1>') ;
-    res.render('pages/home', {title: 'Accueil'}) ;
-});
+// app.get('/', (req, res) => {
+//     //res.end('<h1>Bienvenue sur la HOME PAGE</h1>') ;
+//     res.render('pages/home', {title: 'Accueil'}) ;
+// });
 
 // Route déclenchée uniquement pour les requêtes GET vers l'URL "/about"
-app.get('/about', (req, res) => {
-    //res.end('<p>Ce cours est inspiré de la documentation Express.</p>') ;
-    res.render('pages/about', {title: 'À propos'}) ;
-}) ;
+// app.get('/about', (req, res) => {
+//     //res.end('<p>Ce cours est inspiré de la documentation Express.</p>') ;
+//     res.render('pages/about', {title: 'À propos'}) ;
+//}) ;
+
+
+// Utilisation des routers
+app.use('/', homeRouter);
+app.use('/about', aboutRouter);
+
+
 
 // Route déclenchée pour toutes requêtes GET non matchées par les précédentes
 // ATTENTION : l'ordre de déclaration des routes est important !
 app.get('/*path', (req, res) => {
     // res.send('<p>... je ne sais pas quoi dire ...</p>') ;
     res.redirect('/') ;
-});
+}); 
 
 
 
